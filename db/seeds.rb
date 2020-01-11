@@ -1,26 +1,4 @@
-Question.destroy_all
-
 User.destroy_all
-
-Answer.destroy_all
-Vote.destroy_all
-Comment.destroy_all
-
-Traffic.destroy_all
-Page.destroy_all
-
-file = File.read('api.json')
-data_hash = JSON.parse(file)
-
-data_hash["results"].each do |question|
-	Question.create(
-		category: question["category"],
-		difficulty: question["difficulty"],
-		question_desc: question["question"],
-		correct_answer: question["correct_answer"],
-		incorrect_answers: question["incorrect_answers"]
-	)
-end
 
 numbers = (1..1000).to_a
 months = [
@@ -74,7 +52,3 @@ User.create(
 		zip_code: rand(10000..99999)
 	)
 }
-
-300.times { Vote.create(user_id: rand(2..50), question_id: rand(1..235), vote_num: rand(0..1))}
-
-300.times { Comment.create(user_id: rand(2..50), question_id: rand(1..235), user_name: Faker::Internet.username, comment_text: Faker::Marketing.buzzwords) }
