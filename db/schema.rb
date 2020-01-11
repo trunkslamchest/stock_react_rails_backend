@@ -15,38 +15,9 @@ ActiveRecord::Schema.define(version: 2019_12_26_164320) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "answers", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "question_id"
-    t.string "user_answer"
-    t.string "user_result"
-    t.decimal "user_time", precision: 10, scale: 2
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "comments", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "user_name"
-    t.integer "question_id"
-    t.string "comment_text", default: ""
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "pages", force: :cascade do |t|
     t.integer "user_id"
     t.string "page_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.string "category"
-    t.string "difficulty"
-    t.string "question_desc"
-    t.string "correct_answer"
-    t.string "incorrect_answers", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -75,14 +46,6 @@ ActiveRecord::Schema.define(version: 2019_12_26_164320) do
     t.string "city_town"
     t.string "state"
     t.integer "zip_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "votes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "question_id"
-    t.integer "vote_num"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
