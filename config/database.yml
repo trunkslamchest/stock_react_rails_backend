@@ -27,7 +27,7 @@ default: &default
 
 development:
   <<: *default
-  database: mod5-fp-backend_development
+  database: stock_react_rails_backend_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -61,7 +61,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: mod5-fp-backend_test
+  database: stock_react_rails_backend_test
   username: postgres
   password: hockey
 # As with config/secrets.yml, you never want to store sensitive information,
@@ -85,6 +85,6 @@ test:
 #
 production:
   <<: *default
-  database: mod5-fp-backend_production
-  username: mod5-fp-backend
-  password: <%= ENV['MOD5-FP-BACKEND_DATABASE_PASSWORD'] %>
+  database: stock_react_rails_backend_production
+  username: stock_react_rails_backend
+  password: <%= ENV['STOCK_REACT_RAILS_BACKEND_DATABASE_PASSWORD'] %>
