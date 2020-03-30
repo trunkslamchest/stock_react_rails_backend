@@ -40,6 +40,7 @@ class UsersController < ApplicationController
     user = User.create(create_user_params)
     if user.valid?
       render json: {
+                    avatar: user.avatar,
                     token: token(user.id),
                     user_id: user.id,
                     user_name: user.user_name,
@@ -54,7 +55,7 @@ class UsersController < ApplicationController
                     street_name: user.street_name,
                     city_town: user.city_town,
                     state: user.state,
-                    zip_code: user.zip_code
+                    zip_code: user.zip_code,
                    }
     else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
@@ -76,7 +77,7 @@ class UsersController < ApplicationController
   end
 
   def create_user_params
-    params.permit(:user_name, :password, :email, :first_name, :last_name, :gender, :birth_day, :birth_month, :birth_year, :house_number, :street_name, :city_town, :state, :zip_code)
+    params.permit(:avatar, :user_name, :password, :email, :first_name, :last_name, :gender, :birth_day, :birth_month, :birth_year, :house_number, :street_name, :city_town, :state, :zip_code)
   end
 
 end

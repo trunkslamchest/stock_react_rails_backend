@@ -1,13 +1,6 @@
 class User < ApplicationRecord
 
-  has_many :answers, dependent: :destroy
-  has_many :questions, through: :answers
-
-  has_many :votes, dependent: :destroy
-  has_many :questions, through: :votes
-
-  has_many :comments, dependent: :destroy
-  has_many :questions, through: :comments
+  has_one_attached :avatar
 
   has_secure_password
 
