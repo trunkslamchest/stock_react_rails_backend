@@ -38,25 +38,8 @@ class UsersController < ApplicationController
 
   def create
     user = User.create(create_user_params)
-    if user.valid?
-      render json: {
-                    avatar: user.avatar,
-                    token: token(user.id),
-                    user_id: user.id,
-                    user_name: user.user_name,
-                    email: user.email,
-                    first_name: user.first_name,
-                    last_name: user.last_name,
-                    gender: user.gender,
-                    birth_day: user.birth_day,
-                    birth_month: user.birth_month,
-                    birth_year: user.birth_year,
-                    house_number: user.house_number,
-                    street_name: user.street_name,
-                    city_town: user.city_town,
-                    state: user.state,
-                    zip_code: user.zip_code,
-                   }
+		if user.valid?
+			render json: UsersSerializer.new(user).serialized_json
     else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
