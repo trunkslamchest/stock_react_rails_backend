@@ -8,11 +8,11 @@ class TrafficsController < ApplicationController
   def create
     traffic = Traffic.create(create_traffic_params)
     render json: {
-                  id: traffic.id,
-                  user_id: traffic.user_id,
-                  interaction: traffic.interaction,
-                  element: traffic.element,
-                  }
+        id: traffic.id,
+        user_id: traffic.user_id,
+        interaction: traffic.interaction,
+        element: traffic.element,
+      }
   end
 
   private
