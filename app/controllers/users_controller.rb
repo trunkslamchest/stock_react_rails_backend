@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     render json: @user
-	end
+  end
 
   private
 

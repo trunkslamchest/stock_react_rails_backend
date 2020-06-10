@@ -7,18 +7,16 @@ class ApplicationController < ActionController::API
     JWT.encode(payload, hmac_secret, 'HS256')
   end
 
-
   def hmac_secret
     ENV["HMAC_SECRET"]
   end
 
   def client_has_valid_token?
-    !!current_user_id
-    # if current_user_id.nil?
-    #   false
-    # else
-    #   true
-    # end
+    if current_user_id.nil?
+      false
+    else
+      !!current_user_id
+    end
   end
 
   def current_user_id

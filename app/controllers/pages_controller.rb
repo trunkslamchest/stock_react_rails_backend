@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def index
-    @pages = Page.order(id: :desc)
+    @pages = Page.order(id: :desc).limit(100)
     render json: PageSerializer.new(@pages).serialized_json, include: "**"
   end
 
