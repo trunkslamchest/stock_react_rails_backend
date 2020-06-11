@@ -5,7 +5,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  validate :valid_user_name
+  validate :valid_user_name_create, on: :create
+  validate :valid_user_name_update, on: :update
   validate :valid_email
   validate :valid_first_name
   validate :valid_last_name
@@ -19,7 +20,7 @@ class User < ApplicationRecord
   validate :valid_state
   validate :valid_zip_code
 
-  def valid_user_name
+  def valid_user_name_create
     if user_name == ""
       errors.add(:user_name, 'User Name cannot be blank')
     end
@@ -37,6 +38,24 @@ class User < ApplicationRecord
     end
   end
 
+  def valid_user_name_update
+    if user_name == ""
+      errors.add(:user_name, 'User Name cannot be blank')
+    end
+
+    if !(user_name == "") && user_name.length <= 5
+      errors.add(:user_name, 'User Name cannot be longer than 5 characters')
+    elsif !(user_name == "") && user_name.length > 30
+      errors.add(:user_name, 'User Name cannot be shorter than 30 characters')
+    end
+
+    find_user_name = User.find_by_user_name(user_name)
+
+    if !(find_user_name.nil?) && id != find_user_name.id
+      errors.add(:user_name, "#{user_name} already exists")
+    end
+  end
+
   def valid_email
     if email == ""
       errors.add(:email, 'Email cannot be blank')
@@ -44,7 +63,7 @@ class User < ApplicationRecord
 
     find_email = User.find_by_email(email)
 
-    unless find_email.nil?
+    if !(find_email.nil?) && id != find_email.id
       errors.add(:email, "#{email} already exists")
     end
   end
