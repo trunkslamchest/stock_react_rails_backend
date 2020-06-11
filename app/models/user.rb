@@ -7,8 +7,6 @@ class User < ApplicationRecord
 
   validate :valid_user_name_create, :valid_email_create, on: :create
   validate :valid_user_name_update, :valid_email_update, on: :update
-  # validate :valid_email_create, on: create
-  # validate :valid_email_update, on: update
   validate :valid_first_name
   validate :valid_last_name
   validate :valid_gender
@@ -194,6 +192,8 @@ class User < ApplicationRecord
       errors.add(:zip_code, 'Zip Code cannot be greater than 99999')
     end
   end
+end
+
 
 #   PASSWORD_FORMAT = /\A
 #   (?=.{8,})          # Must contain 8 or more characters
@@ -232,5 +232,3 @@ class User < ApplicationRecord
   # validates :user_name, :email, uniqueness: true
 
   # validates :password, format: {with: PASSWORD_FORMAT}
-
-end

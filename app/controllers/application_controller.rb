@@ -30,7 +30,4 @@ class ApplicationController < ActionController::API
     payload["user_id"]
   end
 
-
-
-
 end
