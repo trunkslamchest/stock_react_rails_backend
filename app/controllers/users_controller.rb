@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def create
     user = User.create(create_user_params)
 
-      byebug
+      # byebug
 
     if !user.valid?
       render json: { errors: user.errors }, status: :unprocessable_entity
