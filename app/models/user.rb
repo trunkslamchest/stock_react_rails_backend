@@ -7,7 +7,8 @@ class User < ApplicationRecord
 
   validate :valid_user_name_create, on: :create
   validate :valid_user_name_update, on: :update
-  validate :valid_email
+  validate :valid_email_create, on: create
+  validate :valid_email_update, on: update
   validate :valid_first_name
   validate :valid_last_name
   validate :valid_gender
@@ -56,7 +57,19 @@ class User < ApplicationRecord
     end
   end
 
-  def valid_email
+  def valid_email_create
+    if email == ""
+      errors.add(:email, 'Email cannot be blank')
+    end
+
+    find_email = User.find_by_email(email)
+
+    unless find_email.nil?
+      errors.add(:email, "#{email} already exists")
+    end
+  end
+
+  def valid_email_update
     if email == ""
       errors.add(:email, 'Email cannot be blank')
     end
