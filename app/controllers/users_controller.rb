@@ -13,18 +13,15 @@ class UsersController < ApplicationController
   def update
     current_user = User.find(params[:id])
     user_update = current_user.update(update_user_params)
-    if current_user.valid?
-      render json: UsersSerializer.new(current_user).serialized_json
+    if !current_user.valid?
+      render json: { errors: current_user.errors }, status: :unprocessable_entity
     else
-      render json: { errors: current_user.errors.full_messages }, status: :unprocessable_entity
+      render json: UsersSerializer.new(current_user).serialized_json
     end
   end
 
   def create
     user = User.create(create_user_params)
-
-      # byebug
-
     if !user.valid?
       render json: { errors: user.errors }, status: :unprocessable_entity
     else

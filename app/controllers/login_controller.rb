@@ -5,9 +5,9 @@ class LoginController < ApplicationController
     if user && user.authenticate(params[:password])
       render json: { token: token(user.id), user_id: user.id, user_name: user.user_name }
     elsif user && !user.authenticate(params[:password])
-      render json: { errors: [ "Error: Invalid Password" ] }, status: :unprocessable_entity
+      render json: { errors: [ "Invalid Password" ] }, status: :unprocessable_entity
     elsif !user
-      render json: { errors: [ "Error: Invalid User Name" ] }, status: :unprocessable_entity
+      render json: { errors: [ "Invalid User Name" ] }, status: :unprocessable_entity
     end
   end
 

@@ -5,10 +5,10 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  validate :valid_user_name_create, on: :create
-  validate :valid_user_name_update, on: :update
-  validate :valid_email_create, on: create
-  validate :valid_email_update, on: update
+  validate :valid_user_name_create, :valid_email_create, on: :create
+  validate :valid_user_name_update, :valid_email_update, on: :update
+  # validate :valid_email_create, on: create
+  # validate :valid_email_update, on: update
   validate :valid_first_name
   validate :valid_last_name
   validate :valid_gender
@@ -92,7 +92,6 @@ class User < ApplicationRecord
       errors.add(:first_name, 'First Name cannot be longer than 30 letters')
     end
   end
-
 
   def valid_last_name
     if last_name == ""
