@@ -1,0 +1,16 @@
+/.bundle
+
+.byebug_history
+
+/config/master.key
+
+.env
+
+# **/db
+# **/db/migrate
+# db
+**/lib
+**/log
+**/storage
+**/tmp
+**/vendor
