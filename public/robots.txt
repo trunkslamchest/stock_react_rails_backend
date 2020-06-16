@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
+=======
+# See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+>>>>>>> backend-0.21
